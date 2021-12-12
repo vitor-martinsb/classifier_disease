@@ -77,19 +77,19 @@ class data:
         Returns
         -------
         list
-            DESCRIPTION.
+            lista de dataframes para treinamento e validação
 
         '''
-        train_dim = int(np.floor(len(df1)*self.perc_train))
-        val_dim = int(np.floor(len(df2)*self.perc_valid))
+        train_dim = int(np.floor(len(df1)*self.perc_train)) #dimensao de dados treinamento
+        val_dim = int(np.floor(len(df2)*self.perc_valid)) #dimensao de dados para validacao
         
-        df1_t = df1[0:train_dim][:]
-        df1_v =df1[train_dim:train_dim+val_dim][:]
+        df1_t = df1[0:train_dim][:] #separa treinamento
+        df1_v =df1[train_dim:train_dim+val_dim][:] #separa validação
         
-        df2_t = df2[0:train_dim][:]
-        df2_v = df2[train_dim:train_dim+val_dim][:]
+        df2_t = df2[0:train_dim][:] #separa treinamento
+        df2_v = df2[train_dim:train_dim+val_dim][:] #separa validação
         
-        df_valid = pd.concat([df1_v, df2_v], axis=0, join='inner')
+        df_valid = pd.concat([df1_v, df2_v], axis=0, join='inner') #junta dos dois dataframes (df_me e df_ob)
         df_train = pd.concat([df1_t, df2_t], axis=0, join='inner')
         
         return [df_train,df_valid]
